@@ -12,8 +12,8 @@ namespace BlocksPrototype
     static class CM
     {
         public static GraphicsDevice graphics;
-        public static int sW;
-        public static int sH;
+        public static int halfW;
+        public static int halfH;
 
         public static Dictionary<string, SpriteFont> fonts = new Dictionary<string, SpriteFont>();
         public static Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>();
@@ -22,8 +22,8 @@ namespace BlocksPrototype
         public static void Init(ContentManager c, GraphicsDevice g)
         {
             graphics = g;
-            sW = g.Viewport.Width / 2;
-            sH = g.Viewport.Height / 2;
+            halfW = g.Viewport.Width / 2;
+            halfH = g.Viewport.Height / 2;
 
             DirectoryInfo dir = new DirectoryInfo(c.RootDirectory + "//" + "blocks");
             foreach (FileInfo f in dir.GetFiles())

@@ -13,6 +13,8 @@ namespace BlocksPrototype
         static Block hoverBlock;
         static MouseState ms = new MouseState();
         static MouseState oldMs = new MouseState();
+        static KeyboardState ks = new KeyboardState();
+        static KeyboardState oldKs = new KeyboardState();
 
         public static Vector2 MousePos
         {
@@ -50,6 +52,7 @@ namespace BlocksPrototype
         public static void Update()
         {
             ms = Mouse.GetState();
+            ks = Keyboard.GetState();
 
             if (ms.LeftButton == ButtonState.Pressed &&
                 oldMs.LeftButton == ButtonState.Released)
@@ -59,11 +62,29 @@ namespace BlocksPrototype
                     World.AddBlock((int)oldHoverBlock.Pos.X, (int)oldHoverBlock.Pos.Y, (int)oldHoverBlock.Pos.Z - 1);
                 }
             }
+
+            if (ks.IsKeyDown(Keys.A))
+            {
+                World.cam._pos.X -= 10;
+            }
+            if (ks.IsKeyDown(Keys.D))
+            {
+                World.cam._pos.X += 10;
+            }
+            if (ks.IsKeyDown(Keys.W))
+            {
+                World.cam._pos.Y -= 10;
+            }
+            if (ks.IsKeyDown(Keys.S))
+            {
+                World.cam._pos.Y += 10;
+            }
         }
 
         public static void LateUpdate()
         {
             oldMs = ms;
+            oldKs = ks;
             oldHoverBlock = hoverBlock;
             hoverBlock = null;
         }

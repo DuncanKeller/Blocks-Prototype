@@ -9,8 +9,8 @@ namespace BlocksPrototype
 {
     class Block
     {
-        static int width;
-        static int height;
+        public static int width;
+        public static int height;
 
         int xi;
         int yi;
@@ -105,10 +105,10 @@ namespace BlocksPrototype
         public void Draw(SpriteBatch sb)
         {
             //off-screen
-            if (x < World.cam._pos.X - (CM.sW)) { return; }
-            if (y < World.cam._pos.Y - (CM.sH)) { return; }
-            if (x > World.cam._pos.X + (CM.sW)) { return; }
-            if (y > World.cam._pos.Y + (CM.sH)) { return; }
+            if (x < World.cam._pos.X - (CM.halfW)) { return; }
+            if (y < World.cam._pos.Y - (CM.halfH)) { return; }
+            if (x > World.cam._pos.X + (CM.halfW)) { return; }
+            if (y > World.cam._pos.Y + (CM.halfH)) { return; }
             // check if block is behind another block / culling
             if (World.BlockCulled(xi, yi, zi)) { return; }
 

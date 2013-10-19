@@ -96,12 +96,17 @@ namespace BlocksPrototype
             sb.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
                 SamplerState.LinearClamp, DepthStencilState.Default,
                 RasterizerState.CullNone, null, cam.get_transformation(CM.graphics));
+
+            int leftIndex = 0;//(cam._pos.X - (CM.halfW / 2))
+            int rightIndex = widthX;
+            int topIndex = 0;
+            int bottomIndex = widthY;
             
             for (int z = height - 1; z >= 0; z--)
             {
-                for (int y = 0; y < widthY; y++)
+                for (int y = topIndex; y < bottomIndex; y++)
                 {
-                    for (int x = widthX - 1; x >= 0; x--)
+                    for (int x = rightIndex - 1; x >= leftIndex; x--)
                     {
                         if (tiles[x, y, z] != null)
                         {
